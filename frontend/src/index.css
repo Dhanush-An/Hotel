@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  body {
+    @apply bg-white dark:bg-[#0B0C10] text-[#1A1D1F] dark:text-white font-sans antialiased min-h-screen m-0 transition-colors duration-300;
+  }
+
+  
+  .font-outfit {
+    font-family: 'Outfit', sans-serif;
+  }
+
+  input, select, textarea {
+    @apply bg-transparent text-[#1A1D1F] dark:text-white;
+  }
+  
+  select option {
+    @apply bg-white dark:bg-[#1c1c24] text-[#1A1D1F] dark:text-white;
+  }
+}
+
+
+@layer components {
+  /* Premium Card Style (HOTEL GLITZ SUITS) */
+  .lodgify-card {
+    @apply bg-white dark:bg-[#1c1c24] rounded-[32px] p-8 shadow-sm border border-[#EFF2F5] dark:border-[#2a2a35] transition-all duration-300;
+  }
+  
+  /* Small Pill Cards (lodgify) */
+  .lodgify-pill-card {
+    @apply bg-white dark:bg-[#1c1c24] rounded-[24px] p-6 shadow-sm border border-[#EFF2F5] dark:border-[#2a2a35] transition-all duration-300;
+  }
+
+  .glass-card {
+    @apply bg-white/30 backdrop-blur-md border border-white/20 shadow-premium rounded-2xl;
+  }
+  
+  .glass-input {
+    @apply bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 rounded-full px-5 py-3 w-full transition-all;
+  }
+  
+  .glass-btn {
+    @apply bg-[#DCEB8C] dark:bg-[#DCEB8C] hover:bg-[#CDDC7A] dark:hover:bg-[#CDDC7A] text-[#1A1D1F] dark:text-[#1A1D1F] font-bold rounded-full px-6 py-3 w-full transition-all shadow-lg shadow-[#DCEB8C]/20 uppercase tracking-wider text-sm;
+  }
+  
+  .nav-item {
+    @apply flex items-center space-x-3 px-4 py-3 rounded-xl transition-all text-[#6F767E] dark:text-[#a1a1aa] hover:bg-[#F4F4F4] dark:hover:bg-[#2a2a35] hover:text-[#1A1D1F] dark:hover:text-white font-medium;
+  }
+  
+  .nav-item.active {
+    @apply bg-[#DCEB8C] dark:bg-[#DCEB8C] text-[#1A1D1F] dark:text-[#1A1D1F] shadow-sm font-bold;
+  }
+
+  .table-header {
+    @apply px-6 py-4 text-left text-[10px] font-bold text-[#6F767E] dark:text-[#A1A1AA] uppercase tracking-widest bg-[#F7F9FB] dark:bg-[#1A1D21] border-b border-[#EFF2F5] dark:border-[#2A2A35];
+  }
+  
+  .table-cell {
+    @apply px-6 py-4 whitespace-nowrap text-sm text-[#1A1D1F] dark:text-white border-b border-[#F4F4F4] dark:border-[#2A2A35];
+  }
+}
+
+/* Custom Scrollbar for Premium Look */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-[#EFF2F5] dark:bg-[#2A2A35] rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-[#DCEB8C] dark:bg-[#DCEB8C];
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.2s ease-out;
+}
+
+.animate-spin-slow {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+

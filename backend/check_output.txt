@@ -1,0 +1,28 @@
+﻿[dotenv@17.3.1] injecting env (5) from .env -- tip: ΓÜÖ∩╕Å  enable debug logging with { debug: true }
+Connected to: hms
+Users in database: [
+  {
+    _id: new ObjectId('69d0110a9ee7f8594ca6c53a'),
+    name: 'System Admin',
+    email: 'admin@hotelshubha.com',
+    role: 'admin'
+  },
+  {
+    _id: new ObjectId('69d0110a9ee7f8594ca6c53c'),
+    name: 'Receptionist desk',
+    email: 'reception@hotelshubha.com',
+    role: 'receptionist'
+  },
+  {
+    _id: new ObjectId('69d0110a9ee7f8594ca6c53e'),
+    name: 'Official owner',
+    email: 'official@hotelshubhasai.com',
+    role: 'admin'
+  },
+  {
+    _id: new ObjectId('69d0964ee983b3e10b204f79'),
+    name: 'Admin User',
+    email: 'admin@hotel.com',
+    role: 'admin'
+  }
+]

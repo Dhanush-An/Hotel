@@ -1,0 +1,12 @@
+﻿[dotenv@17.3.1] injecting env (5) from .env -- tip: ≡ƒ¢í∩╕Å auth for agents: https://vestauth.com
+Connecting to: mongodb://dhanush-hotel:Dhanush12@ac-oj1wfhb-shard-00-00.c3acrlb.mongodb.net:27017,ac-oj1wfhb-shard-00-01.c3acrlb.mongodb.net:27017,ac-oj1wfhb-shard-00-02.c3acrlb.mongodb.net:27017/hms?ssl=true&replicaSet=atlas-lamqcz-shard-0&authSource=admin&appName=Cluster0...
+DB Name: hms
+Dropped users in hms
+Dropped staffs in hms
+Admin account [admin@hotel.com / admin123] created in hms.
+Connecting to: mongodb://dhanush-hotel:Dhanush12@ac-oj1wfhb-shard-00-00.c3acrlb.mongodb.net:27017,ac-oj1wfhb-shard-00-01.c3acrlb.mongodb.net:27017,ac-oj1wfhb-shard-00-02.c3acrlb.mongodb.net:27017/hotel_db?ssl=true&replicaSet=atlas-lamqcz-shard-0&authSource=admin&appName=Cluster0...
+DB Name: hotel_db
+Dropped users in hotel_db
+Dropped staffs in hotel_db
+Admin account [admin@hotel.com / admin123] created in hotel_db.
+Final cleanup complete.
