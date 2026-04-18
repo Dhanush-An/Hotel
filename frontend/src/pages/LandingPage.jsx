@@ -180,8 +180,8 @@ const LandingPage = () => {
 
                     <nav className={`mobile-nav ${isMenuOpen ? 'active' : ''}`}>
                          <ul className="mobile-links">
-                            <li><a href="#about">HOME</a></li>
-                            <li><a href="#rooms">ROOMS</a></li>
+                            <li><a href="#about" onClick={() => setIsMenuOpen(false)}>HOME</a></li>
+                            <li><a href="#rooms" onClick={() => setIsMenuOpen(false)}>ROOMS</a></li>
                             <li><a href="#features" onClick={() => setIsMenuOpen(false)}>FEATURES</a></li>
                             <li><a href="#gallery" onClick={() => setIsMenuOpen(false)}>GALLERY</a></li>
                             <li className="mobile-divider" />
