@@ -1052,7 +1052,7 @@ const AvailableRooms = (props) => {
       {/* POPUP MODAL */}
       {showPopup && selectedRoom && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-md z-[100] flex items-start justify-center p-3 overflow-hidden">
-          <div ref={billRef} className={`print-area bg-white rounded-[40px] w-full ${['options','extend', 'cleaning','checkout_summary'].includes(bookingStep) ? 'max-w-sm' : 'max-w-2xl text-center'} overflow-hidden shadow-2xl animate-scale-in mx-auto flex flex-col`} style={{maxHeight: 'calc(100vh - 24px)'}}>
+          <div ref={billRef} className={`print-area bg-white rounded-[40px] w-full ${['options', 'cleaning','checkout_summary'].includes(bookingStep) ? 'max-w-sm' : 'max-w-2xl text-center'} overflow-hidden shadow-2xl animate-scale-in mx-auto flex flex-col`} style={{maxHeight: 'calc(100vh - 24px)'}}>
             
             {/* Header / Letterhead Container */}
             {['payment','addons','checkout_summary'].includes(bookingStep) ? (
@@ -1201,10 +1201,90 @@ const AvailableRooms = (props) => {
                       </div>
                    </div>
 
-                   <div>
-                      <label className={labelClass}>Extend By (Days)</label>
-                      <input type="number" min="1" value={extendDays} onChange={(e) => setExtendDays(e.target.value)} className={inputClass} style={{ color: 'black', fontWeight: '900' }} />
-                   </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                       <div>
+                          <label className={labelClass}>Extend By (Days)</label>
+                          <input type="number" min="1" value={extendDays} onChange={(e) => setExtendDays(e.target.value)} className={inputClass} style={{ color: 'black', fontWeight: '900' }} />
+                       </div>
+                       <div className="flex items-end">
+                          <button 
+                            type="button"
+                            onClick={() => {
+                              if (bookingForm.numPersons < 4) {
+                                handleBookingFormChange({ target: { name: 'numPersons', value: bookingForm.numPersons + 1 } });
+                                showToast(`Guest ${bookingForm.numPersons + 1} slot added!`, 'success');
+                              } else {
+                                showToast('Maximum 4 guests allowed per room.', 'warning');
+                              }
+                            }}
+                            className="w-full h-[38px] flex items-center justify-center gap-2 bg-blue-50 text-blue-600 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-100 transition-all border border-blue-100 shadow-sm"
+                          >
+                            <UserPlus size={16} /> Add Guest
+                          </button>
+                       </div>
+                    </div>
+
+                    {/* Guest Details Procedure - Same as New Booking */}
+                    <div className="space-y-4 col-span-full border-t border-gray-100 pt-6">
+                        <div className="flex items-center justify-between mb-2">
+                           <h4 className="text-xs font-black text-gray-900 uppercase tracking-widest">Update Guest Information</h4>
+                           <span className="text-[10px] font-black text-blue-500 bg-blue-50 px-3 py-1 rounded-full uppercase">{bookingForm.numPersons} Guests Total</span>
+                        </div>
+
+                        {Array.from({ length: parseInt(bookingForm.numPersons) || 1 }).map((_, idx) => (
+                          <div key={idx} className="bg-gray-50/50 rounded-2xl border border-gray-100 p-4 space-y-3 relative overflow-hidden group hover:border-blue-100 transition-all text-left">
+                             <div className="relative z-10 flex items-center gap-3 mb-2">
+                                <div className="w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-black">
+                                   <User size={16} />
+                                </div>
+                                <div>
+                                   <h4 className="text-sm font-black text-gray-900">Guest {idx + 1} Details</h4>
+                                </div>
+                             </div>
+
+                             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div>
+                                   <label className={labelClass}>Full Name</label>
+                                   <input type="text" name="name" value={bookingForm.guestsList[idx].name} onChange={(e) => handleGuestInfoChange(idx, e)} placeholder="Name" className={inputClass} />
+                                </div>
+                                <div>
+                                   <label className={labelClass}>Mobile</label>
+                                   <input type="tel" name="mobile" value={bookingForm.guestsList[idx].mobile} onChange={(e) => handleGuestInfoChange(idx, e)} placeholder="Mobile" maxLength={10} className={inputClass} />
+                                </div>
+                                <div>
+                                   <label className={labelClass}>Document Number</label>
+                                   <input type="text" name="documentNo" value={bookingForm.guestsList[idx].documentNo} onChange={(e) => handleGuestInfoChange(idx, e)} placeholder="Doc No" className={inputClass} />
+                                </div>
+                             </div>
+
+                             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div>
+                                   <label className={labelClass}>ID Type</label>
+                                   <select name="idProof" value={bookingForm.guestsList[idx].idProof} onChange={(e) => handleGuestInfoChange(idx, e)} className={inputClass}>
+                                      {['Aadhar', 'PAN', 'Passport', 'Driving License'].map(id => <option key={id} value={id}>{id}</option>)}
+                                   </select>
+                                </div>
+                                <div className="md:col-span-2">
+                                   <label className={labelClass}>Address</label>
+                                   <input type="text" name="address" value={bookingForm.guestsList[idx].address} onChange={(e) => handleGuestInfoChange(idx, e)} placeholder="Address" className={inputClass} />
+                                </div>
+                             </div>
+
+                             {/* OCR / Image Upload / Camera support for each guest */}
+                             <div className="grid grid-cols-3 gap-2 mt-2">
+                                <button type="button" onClick={() => handleCameraScan(idx, 'front')} className="h-9 flex items-center justify-center gap-2 bg-white border border-gray-200 rounded-lg text-[8px] font-black uppercase text-gray-600 hover:bg-blue-50 transition-all overflow-hidden relative">
+                                   {bookingForm.guestsList[idx].frontImage ? <img src={bookingForm.guestsList[idx].frontImage} className="w-full h-full object-cover" alt="ID" /> : "FRONT ID"}
+                                </button>
+                                <button type="button" onClick={() => handleCameraScan(idx, 'address')} className="h-9 flex items-center justify-center gap-2 bg-white border border-gray-200 rounded-lg text-[8px] font-black uppercase text-gray-600 hover:bg-blue-50 transition-all overflow-hidden relative">
+                                   {bookingForm.guestsList[idx].addressImage ? <img src={bookingForm.guestsList[idx].addressImage} className="w-full h-full object-cover" alt="ID" /> : "BACK ID"}
+                                </button>
+                                <button type="button" onClick={() => handleCameraScan(idx, 'photo')} className="h-9 flex items-center justify-center gap-2 bg-white border border-gray-200 rounded-lg text-[8px] font-black uppercase text-gray-600 hover:bg-blue-50 transition-all overflow-hidden relative">
+                                   {bookingForm.guestsList[idx].guestPhoto ? <img src={bookingForm.guestsList[idx].guestPhoto} className="w-full h-full object-cover" alt="Face" /> : "FACE"}
+                                </button>
+                             </div>
+                          </div>
+                        ))}
+                    </div>
 
                    <div className="bg-gray-900 rounded-[32px] p-8 text-white">
                       <div className="flex justify-between items-center mb-6">
