@@ -53,6 +53,7 @@ const api = {
 
   // Bookings
   getBookings: (params = '') => request(`${API_URL}/bookings${params ? '?' + params : ''}`),
+  deleteAllBookings: () => request(`${API_URL}/bookings`, { method: 'DELETE' }),
   getDashboardStats: () => request(`${API_URL}/bookings/stats`),
   getCustomers: () => request(`${API_URL}/bookings/customers`),
   getNotifications: () => request(`${API_URL}/bookings/notifications`),

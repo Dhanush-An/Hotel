@@ -2,6 +2,8 @@ const Booking = require('../models/Booking');
 const Room = require('../models/Room');
 const Task = require('../models/Task');
 const User = require('../models/User');
+const Payment = require('../models/Payment');
+const Expense = require('../models/Expense');
 const mongoose = require('mongoose');
 
 const getNotificationSummary = async (req, res) => {
@@ -203,7 +205,9 @@ const deleteAllBookings = async (req, res) => {
   try {
     await Room.updateMany({}, { status: 'Available' });
     await Booking.deleteMany({});
-    res.json({ message: 'All bookings deleted' });
+    await Payment.deleteMany({});
+    await Expense.deleteMany({});
+    res.json({ message: 'All bookings and financial data deleted' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

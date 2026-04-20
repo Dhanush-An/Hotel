@@ -400,7 +400,22 @@ export default function BookingManagement({ initialStatus = 'All', sourceFilter 
   const [assigningBooking, setAssigningBooking] = useState(null);
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { showToast } = useToast();
+  const { showToast, confirm } = useToast();
+
+  const handleDeleteAll = async () => {
+    if (await confirm("Are you sure you want to PERMANENTLY remove ALL current bookings? This will also reset all rooms to AVAILABLE status.", "Danger Zone")) {
+      try {
+        setLoading(true);
+        await api.deleteAllBookings();
+        setBookings([]);
+        showToast("All data wiped successfully", "success");
+      } catch (err) {
+        showToast("Action failed: " + err.message, "error");
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
 
   const fetchBookings = async (silent = false) => {
     try {
@@ -539,6 +554,15 @@ export default function BookingManagement({ initialStatus = 'All', sourceFilter 
             </div>
           ))}
         </div>
+
+        {user?.role === 'admin' && (
+          <button 
+            onClick={handleDeleteAll}
+            className="px-6 py-2.5 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white rounded-xl text-xs font-black uppercase tracking-widest transition-all shadow-sm flex items-center gap-2 border border-red-500/20 active:scale-95"
+          >
+            <Trash2 size={16} /> Delete All
+          </button>
+        )}
       </div>
 
       <div className="bg-white dark:bg-[#1c1c24] rounded-2xl shadow-card border border-border dark:border-[#2a2a35] overflow-hidden">
