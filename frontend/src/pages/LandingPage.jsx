@@ -15,11 +15,14 @@ import api from '../services/api';
 import { useToast } from '../context/ToastContext';
 import './LandingPage.css';
 
-const roomImg1 = '/images/rooms/room-1.png';
-const roomImg2 = '/images/rooms/room-2.png';
-const roomImg3 = '/images/rooms/room-3.png';
-const roomImg4 = '/images/rooms/room-4.png';
-const roomImg5 = '/images/rooms/room-5.png';
+import roomImg1 from '../assets/Shubha sai.jpg';
+import roomImg2 from '../assets/Hotel.jpg';
+import roomImg3 from '../assets/Hotel 5.jpg';
+import roomImg4 from '../assets/Hotel 4.jpg';
+import roomImg5 from '../assets/Hotel 3.jpg';
+import roomImg6 from '../assets/Hotel 2.jpg';
+import roomImg7 from '../assets/room2.jpeg';
+import roomImg8 from '../assets/room4.jpeg';
 
 const LandingPage = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -205,9 +208,9 @@ const LandingPage = () => {
                       { name: "Luxury Suite", img: roomImg3, price: 2300, description: "Our finest décor and premium climate control." },
                       { name: "Family Suite", img: roomImg4, price: 2600, description: "Spacious multi-bed arrangement for family stays." },
                       { name: "Presidential Suite", img: roomImg5, price: 3000, description: "The ultimate peak of luxury and privacy." },
-                      { name: "Honeymoon Suite", img: roomImg1, price: 2500, description: "Romantic ambiance with elegant furnishings." },
-                      { name: "Studio Suite", img: roomImg2, price: 1800, description: "Modern open-plan living with artistic touches." },
-                      { name: "Accessible Suite (for differently-abled guests)", img: roomImg3, price: 1600, description: "Wider spaces and thoughtful accessibility features." }
+                      { name: "Honeymoon Suite", img: roomImg6, price: 2500, description: "Romantic ambiance with elegant furnishings." },
+                      { name: "Studio Suite", img: roomImg7, price: 1800, description: "Modern open-plan living with artistic touches." },
+                      { name: "Accessible Suite (for differently-abled guests)", img: roomImg8, price: 1600, description: "Wider spaces and thoughtful accessibility features." }
                     ].map((room, idx) => (
                       <div className="room-card" key={idx} onClick={() => openBooking(room)}>
                           <img src={room.img} alt={room.name} />
@@ -452,7 +455,7 @@ const LandingPage = () => {
                         <h2 className="section-title font-outfit uppercase">QUERIES</h2>
                         <p className="section-desc">Got a question? Send us a message and we'll get back to you as soon as possible.</p>
                         <ul className="contact-list">
-                            <li><Phone size={20} /> +91 9901303998, 9789004830</li>
+                            <li><Phone size={20} /> +91 9901303998</li>
                             <li><Mail size={20} /> contactus@hotelshubhasai.in</li>
                             <li>
                                 <a 
