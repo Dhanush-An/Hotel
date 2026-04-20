@@ -1253,7 +1253,10 @@ const AvailableRooms = (props) => {
                                   </div>
                                   <div>
                                      <label className={labelClass}>Mobile</label>
-                                     <input type="tel" name="mobile" value={bookingForm.guestsList[idx].mobile} onChange={(e) => handleGuestInfoChange(idx, e)} placeholder="Mobile" maxLength={10} className={inputClass} />
+                                     <input type="tel" name="mobile" value={bookingForm.guestsList[idx].mobile} onChange={(e) => {
+                                          const val = e.target.value.replace(/\D/g, '');
+                                          if (val.length <= 10) handleGuestInfoChange(idx, { target: { name: 'mobile', value: val } });
+                                      }} placeholder="Mobile" maxLength={10} inputMode="numeric" pattern="[0-9]*" className={inputClass} />
                                   </div>
                                   <div>
                                      <label className={labelClass}>Document Number</label>

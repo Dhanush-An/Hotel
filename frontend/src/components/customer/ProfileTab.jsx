@@ -59,7 +59,16 @@ const ProfileTab = ({ user, setUser }) => {
                                     <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Mobile Number</label>
                                     <div className="relative">
                                         <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
-                                        <input type="text" className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl font-bold text-sm focus:outline-none focus:border-blue-500" defaultValue={user.mobile} />
+                                        <input 
+                                            type="tel" 
+                                            className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl font-bold text-sm focus:outline-none focus:border-blue-500" 
+                                            value={user.mobile || ''} 
+                                            onChange={(e) => {
+                                                const val = e.target.value.replace(/\D/g, '').slice(0, 10);
+                                                setUser({...user, mobile: val});
+                                            }}
+                                            maxLength={10}
+                                        />
                                     </div>
                                 </div>
                             </div>

@@ -75,9 +75,21 @@ const TechnicalTab = () => {
 
   return (
     <div className="space-y-6 animate-fade-in pb-10">
-      <div className="flex flex-wrap justify-end items-center gap-4">
-        <div className="flex gap-3">
-          <div className="bg-orange-50 text-orange-700 font-bold py-3 px-6 rounded-2xl transition-all shadow-sm flex items-center gap-2">
+      <div className="flex flex-wrap justify-between items-center gap-4">
+        <div>
+          <h2 className="text-2xl font-black text-gray-900 dark:text-white tracking-tight uppercase italic">Technical <span className="text-primary-500">Audit</span></h2>
+          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-1">Maintenance & Room Operation Protocols</p>
+        </div>
+        <div className="flex items-center gap-3">
+          {history.length > 0 && (
+            <button 
+              onClick={handleDeleteHistory}
+              className="flex items-center gap-2 px-6 py-3 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] transition-all shadow-sm border border-red-500/20 active:scale-95"
+            >
+              <Trash2 size={16} /> Delete All logs
+            </button>
+          )}
+          <div className="bg-orange-50 dark:bg-orange-500/10 text-orange-700 dark:text-orange-400 font-bold py-3 px-6 rounded-2xl transition-all shadow-sm flex items-center gap-2 border border-orange-100 dark:border-orange-500/20">
             <AlertTriangle size={18} />
             {rooms.filter(r => r.status === 'Maintenance').length} Pending Issues
           </div>
