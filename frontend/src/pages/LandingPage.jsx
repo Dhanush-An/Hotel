@@ -15,11 +15,11 @@ import api from '../services/api';
 import { useToast } from '../context/ToastContext';
 import './LandingPage.css';
 
-import roomImg1 from '../assets/Shubha sai.jpg';
-import roomImg2 from '../assets/Hotel.jpg';
-import roomImg3 from '../assets/Hotel 5.jpg';
-import roomImg4 from '../assets/Hotel 4.jpg';
-import roomImg5 from '../assets/Hotel 3.jpg';
+import roomImg1 from '../assets/trashed-1753612964-oyo-14980-hotel-shubha (8) - Copy.jpg.jpeg';
+import roomImg2 from '../assets/trashed-1753612965-oyo-14980-hotel-shubha (10).jpg.jpeg';
+import roomImg3 from '../assets/trashed-1753612965-oyo-14980-hotel-shubha (14).jpg - Copy.jpeg';
+import roomImg4 from '../assets/trashed-1753612965-oyo-14980-hotel-shubha (14).jpg - Copy.jpeg';
+import roomImg5 from '../assets/Hotel 2.jpg';
 import roomImg6 from '../assets/Hotel 2.jpg';
 import roomImg7 from '../assets/room2.jpeg';
 import roomImg8 from '../assets/room4.jpeg';
